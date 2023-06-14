@@ -1,11 +1,11 @@
 "use strict";
 
 const coursesDetailDiv = document.getElementById("courseDetailDiv");
+const urlParams = new URLSearchParams(location.search);
 
 
 fetch('http://localhost:8081/api/courses').then(response => response.json()).then(data => {
 
-    const urlParams = new URLSearchParams(location.search);
 
     data.forEach((course) => {
 
@@ -14,7 +14,6 @@ fetch('http://localhost:8081/api/courses').then(response => response.json()).the
     id = urlParams.get("courseid");
 
     if(id == course.id) {
-        console.log(course)
         const content = `
         <div class="card mt-4">
                 <div class="card-header">
@@ -32,5 +31,6 @@ fetch('http://localhost:8081/api/courses').then(response => response.json()).the
     }
     }
     });
+
 })
 

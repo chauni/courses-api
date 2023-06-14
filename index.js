@@ -7,7 +7,6 @@ const tbody = document.querySelector("#coursesTable tbody");
 fetch("http://localhost:8081/api/courses")
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
 
     data.forEach((course) => {
 
@@ -30,4 +29,11 @@ fetch("http://localhost:8081/api/courses")
 
       const courseDetailsLink = row.insertCell();
       courseDetailsLink.innerHTML = `<a href="./details.html?courseid=${course.id}">View course details</a>`;
+
+      const deleteCourseLink = document.createElement('a');
+      deleteCourseLink.href = `./confirm-delete.html?courseid=${course.id}`
+      deleteCourseLink.innerText = 'Delete Course'
+      deleteCourseLink.classList.add('link-danger', 'btn', 'border-danger')
+      
+      row.append(deleteCourseLink)
   }
